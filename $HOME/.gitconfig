@@ -2,8 +2,8 @@
   name = name
   email = email@myself.com
 [core]
-  excludesfile = ~/.gitignore_global
-  ignorecase = false
+  excludesFile = ~/.gitignore_global
+  ignoreCase = false
   pager = ~/diff-so-fancy/diff-so-fancy | less -FRX
   quotepath = false
 [commit]
