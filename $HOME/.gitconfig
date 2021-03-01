@@ -1,0 +1,41 @@
+[user]
+  name = name
+  email = email@myself.com
+[core]
+  excludesfile = ~/.gitignore_global
+  ignorecase = false
+  pager = ~/diff-so-fancy/diff-so-fancy | less -FRX
+  quotepath = false
+[commit]
+  template = ~/.stCommitMsg
+[pull]
+  rebase = false
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[color]
+  ui = always
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  commit = green
+  meta = yellow bold
+  frag = cyan bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[i18n]
+  logoutputencoding = utf-8
+[includeIf "gitdir:~/Working/"]
+  path = ~/.gitconfig_company

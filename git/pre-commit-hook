@@ -1,0 +1,18 @@
+#!/bin/sh
+
+configemail=$(git config user.email)
+
+if [[ "$configemail" =~ @alibaba-inc.com$ ]]; then
+  echo "Valid email"
+
+else
+  cat <<\EOF
+Error: Not an alibaba-inc email.
+Fix:
+
+  git config user.email 'alias@alibaba-inc.com'
+  git config user.name '花名'
+EOF
+  exit 1
+
+fi

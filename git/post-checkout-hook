@@ -1,0 +1,33 @@
+#!/bin/sh
+
+color_red="\033[1;37;41m"
+color_yellow="\033[1;37;43m"
+color_reset="\033[0m"
+
+develop_name="develop"
+develop_head=$(git rev-parse $develop_name)
+master_name="master"
+master_head=$(git rev-parse $master_name)
+
+current_name=$(git rev-parse --abbrev-ref HEAD)
+current_head=$(git rev-parse HEAD)
+# list of commits ONLY in current branch
+new_commits=$(git log --all --not $(git rev-list --no-walk --exclude=refs/heads/$current_name --exclude=HEAD --all))
+
+
+if [ "$current_name" == "$develop_name" ]; then
+  echo "${color_yellow}This is $develop_name, create a feature branch.${color_reset}"
+
+elif [ "$current_name" == "$master_name" ]; then
+  echo "${color_yellow}This is $master_name, create a hotfix branch.${color_reset}"
+
+elif [ -z "$new_commits" ]; then
+# No dedicated commits since the branch was created
+
+  if { [ "$current_head" != "$develop_head" ] && [ "$current_head" != "$master_head" ]; }; then
+    echo "${color_red}This branch is not created from either $develop_name or $master_name branch!${color_reset}"
+    echo "${color_red}This branch is not created from either $develop_name or $master_name branch!${color_reset}"
+    echo "${color_red}This branch is not created from either $develop_name or $master_name branch!${color_reset}"
+  fi
+
+fi
